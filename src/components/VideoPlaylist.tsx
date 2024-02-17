@@ -1,16 +1,19 @@
 "use client";
-import Link from "next/link";
 import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import axios from "axios";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 type Video = {
   id: number;
-  category: string;
-  title: string;
-  description: string;
-  subtitle: string;
-  thumb: string;
-  sources: string[];
+  order: number;
+  category?: string;
+  title?: string;
+  description?: string;
+  subtitle?: string;
+  thumb?: string;
+  sources?: string[];
 };
 
 type Props = {
@@ -18,21 +21,25 @@ type Props = {
 };
 
 const VideoPlaylist = ({ allVideos }: { allVideos: Video[] }) => {
-  const [videos, setVideos] = useState(allVideos);
-
-  const handleDragEnd = (result: any) => {
-    if (!result.destination) {
-      return;
-    }
-
-    const startIndex = result.source.index;
-    const endIndex = result.destination.index;
+  const [videos, setVideos] = useState<Video[]>(allVideos);
+  console.log(videos);
+  const handleDragEnd = async (result: any) => {
+    const { destination, source } = result;
 
     const updatedVideos = Array.from(videos);
-    const [removedVideo] = updatedVideos.splice(startIndex, 1);
-    updatedVideos.splice(endIndex, 0, removedVideo);
+    const [removedVideo] = updatedVideos.splice(source.index, 1);
+    updatedVideos.splice(destination.index, 0, removedVideo);
 
+    const updatedOrderPayload = updatedVideos.map((item, index) => ({
+      id: item.id,
+      order: index + 1,
+    }));
     setVideos(updatedVideos);
+    try {
+      await axios.put(`/api/videos`, updatedOrderPayload);
+    } catch (error) {
+      console.error("Error updating priority order:", error);
+    }
   };
 
   return (
@@ -62,10 +69,12 @@ const VideoPlaylist = ({ allVideos }: { allVideos: Video[] }) => {
                         {...provided.dragHandleProps}
                       >
                         <div className="thumnail w-full">
-                          <img
+                          <Image
                             src={video.thumb}
                             alt="video"
                             className="w-full object-cover"
+                            width="376"
+                            height="200"
                           />
                           <h5 className="mt-2 font-semibold">
                             {video.title + " | " + video.subtitle}
