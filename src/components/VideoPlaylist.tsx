@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useVideo } from "@/app/context/VideoContext";
 
 type Video = {
   id: number;
@@ -16,38 +17,34 @@ type Video = {
   sources?: string[];
 };
 
-type Props = {
-  allVideos: Video;
-};
+const VideoPlaylist = () => {
+  const { allVideos, setAllVideos } = useVideo();
 
-const VideoPlaylist = ({ allVideos }: { allVideos: Video[] }) => {
-  const [videos, setVideos] = useState<Video[]>(allVideos);
-  console.log(videos);
   const handleDragEnd = async (result: any) => {
     const { destination, source } = result;
 
-    const updatedVideos = Array.from(videos);
+    const updatedVideos: Video[] = Array.from(allVideos);
     const [removedVideo] = updatedVideos.splice(source.index, 1);
     updatedVideos.splice(destination.index, 0, removedVideo);
 
-    const updatedOrderPayload = updatedVideos.map((item, index) => ({
+    const updatedOrderPayload = updatedVideos?.map((item, index) => ({
       id: item.id,
       order: index + 1,
     }));
-    setVideos(updatedVideos);
+    setAllVideos(updatedVideos);
     try {
       await axios.put(`/api/videos`, updatedOrderPayload);
     } catch (error) {
-      console.error("Error updating priority order:", error);
+      console.error("Error updating order:", error);
     }
   };
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
       <Droppable droppableId="droppable - 1">
-        {(provided, snapshot) => (
+        {(provided) => (
           <div
-            className="w-1/3 m-10"
+            className="lg:w-1/3 sm:w-full w-full lg:mt-10 sm:m-10 sm:mt-96 mx-5 mt-96"
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
@@ -57,7 +54,7 @@ const VideoPlaylist = ({ allVideos }: { allVideos: Video[] }) => {
                 draggableId={"draggable-" + video?.id}
                 index={i}
               >
-                {(provided, snapshot) => (
+                {(provided) => (
                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}

@@ -1,10 +1,12 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Link from "next/link";
 import { handleFetchVideos } from "./Service";
 import ShimmerHome from "@/components/shimmer-ui/ShimmerHome";
 import Navbar from "@/components/Navbar";
+import { filterReducer } from "./reducer/FilterReducer";
+import { useVideo } from "@/app/context/VideoContext";
 
 export default function Home() {
   interface Videos {
@@ -17,45 +19,13 @@ export default function Home() {
     thumb: string;
     sources: string[];
   }
-  const [videos, setVideos] = useState<Videos[]>([]);
-  const [allVideos, setAllVideos] = useState<Videos[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [searchInp, setSearchInp] = useState("");
+  const { allVideos, loading } = useVideo();
+  // const [videos, setVideos] = useState<Videos[]>([]);
+  // const [allVideos, setAllVideos] = useState<Videos[]>([]);
 
-  const searchHandler = (e: any) => {
-    const searchTerm = e.target.value.toLowerCase();
-    setSearchInp(searchTerm);
-    const filteredVideos = videos?.filter(
-      (video) =>
-        video?.title?.toLowerCase().includes(searchTerm) ||
-        video?.subtitle?.toLowerCase().includes(searchTerm)
-    );
-    setAllVideos(filteredVideos);
-  };
-
-  const categories = [
-    "All",
-    "Movie",
-    "Cartoon",
-    "Recently Uploaded",
-    "Music",
-    "Web Series",
-  ];
-
-  const filterHandler = (category: string) => {
-    if (category === "All") {
-      setAllVideos(videos);
-    } else {
-      const filteredVideos = videos.filter(
-        (video) => video.category.toLowerCase() === category.toLowerCase()
-      );
-      setAllVideos(filteredVideos);
-    }
-  };
-
-  useEffect(() => {
-    handleFetchVideos(setAllVideos, setVideos, setLoading);
-  }, []);
+  // useEffect(() => {
+  //   handleFetchVideos(setAllVideos, setVideos, setLoading);
+  // }, []);
 
   return (
     <>
@@ -63,12 +33,7 @@ export default function Home() {
         <ShimmerHome />
       ) : (
         <>
-          <Navbar
-            categories={categories}
-            filterHandler={filterHandler}
-            searchInp={searchInp}
-            searchHandler={searchHandler}
-          />
+          <Navbar />
           <div className="w-5/6 mt-28 mx-auto my-auto flex flex-wrap lg:justify-items-start">
             {allVideos?.map((video) => (
               <div

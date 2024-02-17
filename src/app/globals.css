@@ -30,12 +30,30 @@
   position: fixed;
 }
 
+@media only screen and (max-width: 640px) {
+  .video-box div {
+    width: 100% !important;
+    height: 285px !important;
+    background-color: black;
+}
+}
+@media only screen and (max-width: 1024px) {
+  .video-box div {
+    width: 100% !important;
+    height: 330px !important;
+    background-color: black;
+}
+}
+
 @layer components {
   .card {
     background-color: theme("colors.white");
     border-radius: theme("borderRadius.lg");
     /* padding: theme('spacing.6'); */
     box-shadow: theme("boxShadow.xl");
+  }
+  .card img {
+    width: 100%;
   }
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;

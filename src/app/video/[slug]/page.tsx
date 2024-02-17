@@ -22,7 +22,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
   const [videos, setVideos] = useState<Video[]>([]);
   const [allVideos, setAllVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
-  const video = allVideos?.filter(
+  const playingVideo = allVideos?.filter(
     (video) => video.id.toString() === params.slug.toString()
   );
 
@@ -36,19 +36,23 @@ const Page = ({ params }: { params: { slug: string } }) => {
         <ShimmerVideoPlaylist />
       ) : (
         <>
-          {/* <Navbar /> */}
-          <div className="flex">
-            <VideoPlaylist allVideos={allVideos} />
-            <div className="w-2/3 m-10">
+          <Navbar />
+          <div className="flex mt-14 flex-wrap-reverse lg:flex-nowrap">
+            <VideoPlaylist />
+            <div className="lg:w-2/3 sm:w-full w-full lg:m-14 mt-4 mx-auto">
               <div className="flex video-box">
-                <ReactPlayer url={video[0].sources[0]} controls playing />
+                <ReactPlayer
+                  url={playingVideo[0].sources[0]}
+                  controls
+                  playing
+                />
               </div>
-              <div className="fixed bottom-20">
+              {/* <div className="fixed bottom-20">
                 <h5 className="font-medium lg:text-lg sm:text-sm text-xs">
-                  {video[0].title + " | " + video[0].subtitle}
+                  {playingVideo[0].title + " | " + playingVideo[0].subtitle}
                 </h5>
-                <p>{video[0].description}</p>
-              </div>
+                <p>{playingVideo[0].description}</p>
+              </div> */}
             </div>
           </div>
         </>
