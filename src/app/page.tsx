@@ -17,7 +17,10 @@ export default function Home() {
           <Navbar showBackBtn={false} />
           <div className="sm:w-5/6 w-11/12 mt-28 mx-auto my-auto flex flex-wrap lg:justify-items-start">
             {allVideos?.map((video, i) => (
-              <div className="card mb-16 lg:w-72 mx-3 sm:w-5/12 w-full w-18-pr">
+              <div
+                className="card mb-16 lg:w-72 mx-3 sm:w-5/12 w-full w-18-pr"
+                key={video.id}
+              >
                 <Link href={`/video/${video.id}`}>
                   <Image
                     src={video?.thumb}
