@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
+import path from 'path';
 
 export interface Videos {
     id: number;
@@ -15,7 +16,8 @@ export interface Videos {
 
 export async function GET(req: NextRequest, res: NextResponse) {
     try {
-        const existingData: Videos[] = JSON.parse(fs.readFileSync('data/data.json', 'utf-8'));
+        const filePath = path.join(process.cwd(), 'data/data.json');
+        const existingData: Videos[] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
         existingData.sort((a, b) => a.order - b.order)
         return NextResponse.json(existingData);
     } catch (error) {

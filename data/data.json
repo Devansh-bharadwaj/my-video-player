@@ -117,7 +117,7 @@
     "subtitle": "By Blender Foundation",
     "thumb": "https://storage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg",
     "title": "Tears of Steel",
-    "order": 1
+    "order": 2
   },
   {
     "id": 11,
@@ -129,7 +129,7 @@
     "subtitle": "By Google",
     "thumb": "https://storage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg",
     "title": "For Bigger Meltdowns",
-    "order": 2
+    "order": 1
   },
   {
     "id": 12,

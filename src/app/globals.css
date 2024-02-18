@@ -56,7 +56,6 @@
     display: none;
   }
 }
-/* lg:w-64 mx-3 sm:w-5/12 w-full w-18-pr */
 @layer components {
   .card {
     background-color: theme("colors.white");
