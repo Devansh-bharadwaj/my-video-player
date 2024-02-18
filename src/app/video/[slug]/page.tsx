@@ -1,6 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { handleFetchVideos } from "@/app/Service";
+import React from "react";
 import ReactPlayer from "react-player/lazy";
 import VideoPlaylist from "@/components/VideoPlaylist";
 import ShimmerVideoPlaylist from "@/components/shimmer-ui/ShimmerVideoPlaylist";
@@ -20,9 +19,7 @@ type Video = {
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const { allVideos, loading } = useVideo();
-  const [videos, setVideos] = useState(allVideos);
-
-  const playingVideo = videos?.filter(
+  const playingVideo = allVideos?.filter(
     (video) => video.id.toString() === params.slug.toString()
   );
 
@@ -38,16 +35,16 @@ const Page = ({ params }: { params: { slug: string } }) => {
             <div className="lg:w-2/3 sm:w-full w-full lg:mx-14 mt-8 rounded-lg mx-auto">
               <div className="flex video-box">
                 <ReactPlayer
-                  url={playingVideo[0]?.sources[0]}
+                  url={playingVideo[0].sources[0]}
                   controls
                   playing
                 />
               </div>
               <div className="lg:mt-4 mt-22 mx-3">
                 <h5 className="font-medium lg:text-lg sm:text-sm">
-                  {playingVideo[0]?.title + " | " + playingVideo[0]?.subtitle}
+                  {playingVideo[0].title + " | " + playingVideo[0].subtitle}
                 </h5>
-                <p className="mob_hide">{playingVideo[0]?.description}</p>
+                <p className="mob_hide">{playingVideo[0].description}</p>
               </div>
             </div>
           </div>

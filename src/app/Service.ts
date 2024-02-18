@@ -1,4 +1,3 @@
-// "use-client"
 import axios from "axios";
 
 export const handleFetchVideos = async (setVideos: any, setAllVideos: any, setLoading: any) => {
