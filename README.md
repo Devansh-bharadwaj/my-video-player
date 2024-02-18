@@ -100,7 +100,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ### Live url link
 
-- https://my-video-player-git-main-devansh-bharadwaj.vercel.app/
+- [https://my-video-player-git-main-devansh-bharadwaj.vercel.app/](https://dev-video-player-devansh-bharadwaj.vercel.app/)
 
 ### Lighthouse report Homepage
 
