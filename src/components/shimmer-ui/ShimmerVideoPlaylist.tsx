@@ -33,7 +33,7 @@ const ShimmerVideoPlaylist = (props: Props) => {
       </div>
       <div className="w-2/3 m-10">
         <div className="flex video-box">
-          <div className="bg-slate-300 w-4/5 h-3/5"></div>
+          <div className="!bg-slate-300 w-4/5 h-3/5"></div>
         </div>
         <div className="fixed bottom-20">
           <div className="bg-slate-300 w-56 h-6"></div>

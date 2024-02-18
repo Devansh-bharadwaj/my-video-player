@@ -98,6 +98,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 - Ensured full responsiveness across various devices.
 
+### Live url link
+
+- https://my-video-player-v4ca-devansh-bharadwaj.vercel.app/
+
+### Lighthouse report
+
+![Homepage](./src/assets/home-lighthouse-report.png)
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
