@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -30,9 +28,9 @@
   height: 509px !important;
   /* position: fixed; */
   border-radius: 18px;
-    overflow: hidden;
-    cursor: pointer;
-    background-color: black;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: black;
 }
 
 @media only screen and (max-width: 640px) {
@@ -41,7 +39,7 @@
     background-color: black;
     position: fixed;
     border-radius: 0;
-}
+  }
 }
 @media only screen and (max-width: 1024px) {
   .video-box div {
@@ -50,21 +48,22 @@
     position: fixed;
     border-radius: 0;
     top: 85px;
+  }
+  .sm-fixed {
+    position: fixed;
+  }
+  .mob_hide {
+    display: none;
+  }
 }
-.sm-fixed {
-  position: fixed;
-}
-.mob_hide {
-  display: none;
-}
-}
-
+/* lg:w-64 mx-3 sm:w-5/12 w-full w-18-pr */
 @layer components {
   .card {
     background-color: theme("colors.white");
     border-radius: theme("borderRadius.lg");
     /* padding: theme('spacing.6'); */
     box-shadow: theme("boxShadow.xl");
+    width: 96%;
   }
   .card img {
     width: 100%;
@@ -76,9 +75,17 @@
     margin-top: 21rem;
   }
 
+  @media (min-width: 640px) {
+    .card {
+      width: 30%;
+    }
+  }
   @media (min-width: 1024px) {
     .w-18-pr {
       width: 18%;
+    }
+    .card {
+      width: 22%;
     }
   }
 }
