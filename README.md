@@ -106,6 +106,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ![Homepage](./src/assets/home-lighthouse-report.png)
 
+![Videoplayer](./src/assets/video-player-lighthouse-report.png)
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
