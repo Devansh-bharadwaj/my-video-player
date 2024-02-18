@@ -44,7 +44,7 @@ const VideoPlaylist = () => {
       <Droppable droppableId="droppable - 1">
         {(provided) => (
           <div
-            className="lg:w-1/3 sm:w-full w-full lg:mt-10 sm:m-10 sm:mt-96 mx-5 mt-96"
+            className="lg:w-1/3 sm:w-full w-full lg:mt-10 sm:m-10 sm:mt-96 mx-5 mt-8"
             ref={provided.innerRef}
             {...provided.droppableProps}
           >

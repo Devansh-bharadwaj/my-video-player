@@ -1,31 +1,12 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useReducer, useState } from "react";
 import Link from "next/link";
-import { handleFetchVideos } from "./Service";
 import ShimmerHome from "@/components/shimmer-ui/ShimmerHome";
 import Navbar from "@/components/Navbar";
-import { filterReducer } from "./reducer/FilterReducer";
 import { useVideo } from "@/app/context/VideoContext";
 
 export default function Home() {
-  interface Videos {
-    id: number;
-    order: number;
-    category: string;
-    title: string;
-    description: string;
-    subtitle: string;
-    thumb: string;
-    sources: string[];
-  }
   const { allVideos, loading } = useVideo();
-  // const [videos, setVideos] = useState<Videos[]>([]);
-  // const [allVideos, setAllVideos] = useState<Videos[]>([]);
-
-  // useEffect(() => {
-  //   handleFetchVideos(setAllVideos, setVideos, setLoading);
-  // }, []);
 
   return (
     <>
@@ -33,13 +14,10 @@ export default function Home() {
         <ShimmerHome />
       ) : (
         <>
-          <Navbar />
-          <div className="w-5/6 mt-28 mx-auto my-auto flex flex-wrap lg:justify-items-start">
-            {allVideos?.map((video) => (
-              <div
-                className="card mb-16 lg:w-72 mx-3 sm:w-5/12 w-full w-18-pr"
-                key={video?.id}
-              >
+          <Navbar showBackBtn={false} />
+          <div className="sm:w-5/6 w-11/12 mt-28 mx-auto my-auto flex flex-wrap lg:justify-items-start">
+            {allVideos?.map((video, i) => (
+              <div className="card mb-16 lg:w-72 mx-3 sm:w-5/12 w-full w-18-pr">
                 <Link href={`/video/${video.id}`}>
                   <Image
                     src={video?.thumb}

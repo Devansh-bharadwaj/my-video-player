@@ -1,28 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { useVideo } from "@/app/context/VideoContext";
 import { IoIosArrowBack } from "react-icons/io";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
-const Navbar = () => {
+const Navbar = ({ showBackBtn }) => {
   const { categories, searchHandler, searchInp, filterHandler } = useVideo();
-  const router = useRouter();
-  const url = window.location.href;
-  const path = url.split("/");
-  const goBack = () => {
-    router.replace("/");
-  };
 
   return (
     <div className="w-full text-center fixed bg-white top-0 pb-5">
       <div className="flex justify-between flex-wrap w-11/12 m-auto mt-6">
-        {path.includes("video") && (
-          <div
-            className="w-10 h-10 border-2 rounded-full flex justify-center items-center cursor-pointer hover:bg-black hover:text-white ease-in-out duration-300"
-            onClick={goBack}
-          >
-            <IoIosArrowBack />
-          </div>
+        {showBackBtn && (
+          <Link href={"/"}>
+            <div className="w-10 h-10 border-2 rounded-full flex justify-center items-center cursor-pointer hover:bg-black hover:text-white ease-in-out duration-300">
+              <IoIosArrowBack />
+            </div>
+          </Link>
         )}
 
         <ul className="w-1/2 list-none flex flex-nowrap overflow-x-scroll scrollbar-hidden justify-between">

@@ -20,28 +20,42 @@
 
 .thumnail img {
   height: 100%;
+  border-radius: 10px;
 }
 .thumnail {
   height: 224px;
 }
 .video-box div {
-  width: 59% !important;
+  width: 100% !important;
   height: 509px !important;
-  position: fixed;
+  /* position: fixed; */
+  border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: black;
 }
 
 @media only screen and (max-width: 640px) {
   .video-box div {
-    width: 100% !important;
     height: 285px !important;
     background-color: black;
+    position: fixed;
+    border-radius: 0;
 }
 }
 @media only screen and (max-width: 1024px) {
   .video-box div {
-    width: 100% !important;
     height: 330px !important;
     background-color: black;
+    position: fixed;
+    border-radius: 0;
+    top: 85px;
+}
+.sm-fixed {
+  position: fixed;
+}
+.mob_hide {
+  display: none;
 }
 }
 
@@ -57,6 +71,9 @@
   }
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;
+  }
+  .mt-22 {
+    margin-top: 21rem;
   }
 
   @media (min-width: 1024px) {
